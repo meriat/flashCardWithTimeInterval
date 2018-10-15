@@ -6,7 +6,7 @@ export class FlashCard {
         this.timeLimit = 20;
         this.score = 0;
         this.questionIndex = 0;
-        this.correctAnswer = ["let", "const"];
+        this.correctAnswer = ["camelCase", "const"];
         this.question = ["What word is used to declare a variable that changes in ES6?", "What word is used to declare a variable that does not change in ES6?"];
     }
 
@@ -17,10 +17,14 @@ export class FlashCard {
             if(this.doYouHaveTimeLeft())
             {
                 clearInterval();
-                this.nextQuestion()
-                ;
+                this.nextQuestion();
+                
             }
         }, 1000);
+    }
+
+    getTimeLimit() {
+        return this.timeLimit;
     }
 
     doYouHaveTimeLeft() {
@@ -34,11 +38,10 @@ export class FlashCard {
     points() {
         for (let i = 0; i < this.correctAnswer.length; i++) {
             if (this.correctAnswer[i] === this.userAnswer[i]) {
-                return this.score = 1 + this.score;
-            } else {
-                return this.score;
+                this.score = 1 + this.score;
             }
         }
+        return this.score;
     }
 
     nextQuestion() {
