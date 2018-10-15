@@ -2,9 +2,26 @@
 <html>
   <head>
     <script type="text/javascript" src="bundle.js"></script>
-    <title>project</title>
+    <title>Flash Cards</title>
   </head>
   <body>
-    <p>project</p>
+    <div class="container">
+    <h1>Flash Cards</h1>
+    <div class="flashCard">
+      <form class="form-group" id="flashCardForm">
+          <h3>What word is used to declare a variable that changes in ES6?</h3>
+          <div class="radio">
+            <label><input type="radio" name="option" value="let">let</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="option" value="camelCase">camelCase</label>
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+      </form>
+    </div>
+    <div>
+      <h5 id="score"></h5>
+    </div>
+  </div>
   </body>
 </html>

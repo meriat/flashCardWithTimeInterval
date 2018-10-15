@@ -52,6 +52,7 @@ export class FlashCard {
     }
 
     getQuestion(index) {
+        this.question[this.questionIndex];
         return this.question[index];
     }
 }
