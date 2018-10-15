@@ -1,10 +1,11 @@
-const correctAnswer = "camelCase";
+/* eslint-disable no-unused-vars */
 
 export class FlashCard {
     constructor (userAnswer){
         this.userAnswer = userAnswer;
         this.timeLimit = 20;
         this.score = 0;
+        this.correctAnswer = "camelCase";
     }
 
     setTimeLimit() {
@@ -21,9 +22,9 @@ export class FlashCard {
         }
     }
 
-    score(){
-        if (correctAnswer === this.userAnswer){
-            return this.score ++;
+    points(){
+        if (this.correctAnswer === this.userAnswer){
+            return this.score = 1 + this.score;
         } else{
             return this.score;
         }

@@ -1,8 +1,9 @@
 import { FlashCard } from '../src/flashCard.js';
 
+/* eslint-disable no-unused-vars */
 describe('FlashCard', function(){
-    // let timeInterval = setInterval(2000);
-    let testAnswer = new FlashCard("synchronous");
+    let testAnswer = new FlashCard("camelCase");
+    // const testUserAnswer = "synchronous";
 
     beforeEach(function(){
         jasmine.clock().install();
@@ -14,7 +15,7 @@ describe('FlashCard', function(){
     });
 
     it('should have a time limit of 20 seconds to answer the question', function(){
-        expect(testAnswer.userAnswer).toEqual("synchronous");
+        expect(testAnswer.userAnswer).toEqual("camelCase");
         expect(testAnswer.timeLimit).toEqual(20);
     });
 
@@ -28,5 +29,8 @@ describe('FlashCard', function(){
         expect(testAnswer.doYouHaveTimeLeft()).toEqual(true);
     });
 
-
+    it('give the user one point if their answer is correct', function(){
+        this.userAnswer = "camelCase";
+        expect(testAnswer.points()).toEqual(1);
+    });
 });
