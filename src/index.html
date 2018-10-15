@@ -6,21 +6,27 @@
   </head>
   <body>
     <div class="container">
-    <h1>Flash Cards</h1>
+    <h1 class="jumbotron">Flash Cards</h1>
     <div class="flashCard">
       <form class="form-group" id="flashCardForm">
           <h3>What word is used to declare a variable that changes in ES6?</h3>
-          <div class="radio">
-            <label><input type="radio" name="option" value="let">let</label>
+          <div class="timer">
+            <h3 id="timer"></h3>
           </div>
           <div class="radio">
-            <label><input type="radio" name="option" value="camelCase">camelCase</label>
+              <input id="firstOption" type="radio" name="option" value="let">
+            <label id="firstOptionText">&nbsp;let</label>
+            
+          </div>
+          <div class="radio">
+              <input id="secondOption" type="radio" name="option" value="camelCase">
+            <label id="secondOptionText">&nbsp;camelCase</label>
           </div>
           <button type="submit" class="btn btn-success">Submit</button>
       </form>
     </div>
     <div>
-      <h5 id="score"></h5>
+      <h5 id="score">Score: </h5>
     </div>
   </div>
   </body>
