@@ -3,37 +3,21 @@
 export class FlashCard {
     constructor() {
         this.userAnswer = [];
-        this.timeLimit = 20;
+        this.timeLimit = 10;
         this.score = 0;
         this.questionIndex = 0;
-        this.answerObjects = [
-            {
-                first: "const",
-                second: "let"
-            },
-            {
-                first: "Australia",
-                second: "let"
-            },
-            {
-                first: "Australia",
-                second: "const"
-            }
-        ]
-        this.answerOne = this.answerObjects[this.questionIndex].first;
-        this.answerTwo = this.answerObjects[this.questionIndex].second;
         this.correctAnswer = ["let", "Australia", "const"];
-        // this.question = ["What word is used to declare a variable that changes in ES6?", "What word is used to declare a variable that does not change in ES6?"];
+        this.currentInterval;
     }
 
     setTimeLimit() {
-        this.timeLimit = 20;
-        setInterval(() => {
+        this.timeLimit = 10;
+        this.currentInterval = setInterval(() => {
             this.timeLimit--;
-            if(this.doYouHaveTimeLeft())
+            if(this.gameOverState())
             {
-                clearInterval();
-                this.nextQuestion();
+                clearInterval(this.currentInterval);
+                // Enter game over state here
                 
             }
         }, 1000);
@@ -43,8 +27,9 @@ export class FlashCard {
         return this.timeLimit;
     }
 
-    doYouHaveTimeLeft() {
+    gameOverState() {
         if (this.timeLimit < 1) {
+            this.timeLimit = 0;
             return true;
         } else {
             return false;
@@ -52,22 +37,13 @@ export class FlashCard {
     }
 
     points() {
-            if (this.correctAnswer[this.questionIndex] === this.userAnswer[this.questionIndex]) {
+        for(let i=0;i< this.correctAnswer.length; i++){
+            if (this.correctAnswer[i] === this.userAnswer[i]) {
                 this.score = 1 + this.score;
             }
+        }
+            
             return this.score;
         }
- 
 
-    nextQuestion() {
-        this.questionIndex++;
-        let thisQuestion = this.getQuestion(this.questionIndex);
-        this.setTimeLimit();
-        return thisQuestion;
-    }
-
-    getQuestion(index) {
-        this.question[this.questionIndex];
-        return this.question[index];
-    }
 }
