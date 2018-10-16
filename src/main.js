@@ -9,6 +9,7 @@ import { FlashCard } from './flashCard.js';
 $(document).ready(function () {
     let mood = 'waiting';
     // $("#waiting").show();
+    callApi();
     function callApi() {
         $.ajax({
             url: `https://api.giphy.com/v1/gifs/random?api_key=pq4bbnDfNiufadbSHigllyqkIC228kfb&tag=${mood}&rating=G`,
@@ -17,7 +18,7 @@ $(document).ready(function () {
                 format: 'json'
             },
             success: function (response) {
-                // mood = $('#waiting').append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
+                mood = $('#waiting').append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
                 console.log("Boo!");
                 $("#timer").text("");
                 $("#timer").append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
@@ -31,12 +32,13 @@ $(document).ready(function () {
 
     var checkGame = setInterval(function () {
         // if(mood == "waiting"){
-        //     mood = "goofy";
+        //     mood = "gameover";
         // }
         if (newFlashCard.gameOverState()) {
             mood = "gameover";
             $("#timer").text("");
             callApi();
+            $("#waiting").hide();
             clearInterval(checkGame);
         }
     }, 500);
