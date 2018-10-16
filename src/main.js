@@ -5,26 +5,56 @@ import './styles.css';
 import { FlashCard } from './flashCard.js';
 
 
+
 $(document).ready(function () {
-    $("#waiting").show();
-    $.ajax({
-        url: `https://api.giphy.com/v1/gifs/random?api_key=hjK0Bz4npyo60C0xlHhhwcSqDKMzDkSr&tag=waiting&rating=G`,
-        type: 'GET',
-        data: {
-            format: 'json'
-        },
-        success: function(response){
-            $('#waiting').append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
-        },
-        error: function(){
-            $('#errors').text("there was an error processing your request. Please try again!!!!");
+    let mood = 'waiting';
+    // $("#waiting").show();
+    function callApi() {
+        $.ajax({
+            url: `https://api.giphy.com/v1/gifs/random?api_key=pq4bbnDfNiufadbSHigllyqkIC228kfb&tag=${mood}&rating=G`,
+            type: 'GET',
+            data: {
+                format: 'json'
+            },
+            success: function (response) {
+                // mood = $('#waiting').append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
+                console.log("Boo!");
+                $("#timer").text("");
+                $("#timer").append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
+    
+            },
+            error: function () {
+                $('#errors').text("there was an error processing your request. Please try again!!!!");
+            }
+        });
+    }
+
+    var checkGame = setInterval(function () {
+        // if(mood == "waiting"){
+        //     mood = "goofy";
+        // }
+        if (newFlashCard.gameOverState()) {
+            mood = "gameover";
+            $("#timer").text("");
+            callApi();
+            clearInterval(checkGame);
         }
-    });
+    }, 500);
+
+
+    $("#timer").show();
 
     let newFlashCard = new FlashCard();
     newFlashCard.setTimeLimit();
     setInterval(() => {
-        $("#timer").text(newFlashCard.timeLimit);
+        if (!newFlashCard.gameOverState()) {
+
+            $("#timer").text(newFlashCard.timeLimit);
+        }
+
+        // if(newFlashCard.gameOverState()){
+        //     $("#timer").append(`<img src=${response.data.images.fixed_height_downsampled.url} alt="some random gif">`);
+        // }
     }, 50);
 
     $("#flashCardForm").submit(function (event) {

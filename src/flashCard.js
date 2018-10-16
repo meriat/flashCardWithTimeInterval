@@ -3,7 +3,7 @@
 export class FlashCard {
     constructor() {
         this.userAnswer = [];
-        this.timeLimit = 10;
+        this.timeLimit = 5;
         this.score = 0;
         this.questionIndex = 0;
         this.correctAnswer = ["let", "Australia", "const"];
@@ -11,20 +11,15 @@ export class FlashCard {
     }
 
     setTimeLimit() {
-        this.timeLimit = 10;
+        this.timeLimit = 5;
         this.currentInterval = setInterval(() => {
             this.timeLimit--;
             if(this.gameOverState())
             {
                 clearInterval(this.currentInterval);
-                // Enter game over state here
-                
+                // alert("game over");
             }
         }, 1000);
-    }
-
-    getTimeLimit() {
-        return this.timeLimit;
     }
 
     gameOverState() {
