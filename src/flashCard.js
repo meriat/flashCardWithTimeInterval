@@ -12,14 +12,18 @@ export class FlashCard {
                 second: "let"
             },
             {
-                first: "const",
+                first: "Australia",
                 second: "let"
+            },
+            {
+                first: "Australia",
+                second: "const"
             }
         ]
         this.answerOne = this.answerObjects[this.questionIndex].first;
         this.answerTwo = this.answerObjects[this.questionIndex].second;
-        this.correctAnswer = ["let", "const"];
-        this.question = ["What word is used to declare a variable that changes in ES6?", "What word is used to declare a variable that does not change in ES6?"];
+        this.correctAnswer = ["let", "Australia", "const"];
+        // this.question = ["What word is used to declare a variable that changes in ES6?", "What word is used to declare a variable that does not change in ES6?"];
     }
 
     setTimeLimit() {
