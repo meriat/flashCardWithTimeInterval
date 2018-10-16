@@ -39,6 +39,7 @@ $(document).ready(function () {
             $("#timer").text("");
             callApi();
             $("#waiting").hide();
+            $("#hideForm").hide();
             clearInterval(checkGame);
         }
     }, 500);
@@ -62,6 +63,9 @@ $(document).ready(function () {
     $("#flashCardForm").submit(function (event) {
         event.preventDefault();
 
+        $("#hideForm").hide();
+        $("#waiting").hide();
+
         let result = $('input[name="option"]:checked').val();
         let result2 = $('input[name="option2"]:checked').val();
         let result3 = $('input[name="option3"]:checked').val();
@@ -69,6 +73,6 @@ $(document).ready(function () {
         newFlashCard.userAnswer.push(result2);
         newFlashCard.userAnswer.push(result3);
         $('#score').empty();
-        $("#score").text(newFlashCard.points());
+        $("#score").text("The score is " + newFlashCard.points());
     });
 });
